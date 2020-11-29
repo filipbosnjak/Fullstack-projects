@@ -41,6 +41,7 @@ const App = () => {
         >
           POST Todo
         </button>
+        <button className="button">GET TODOS</button>
       </form>
 
       <pre>{JSON.stringify(response, null, 2)}</pre>
