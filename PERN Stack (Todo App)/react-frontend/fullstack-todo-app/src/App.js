@@ -3,13 +3,22 @@ import "./App.css";
 
 const App = () => {
   const [response, setResponse] = useState("No response");
+  const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState("");
+
+  const url = "http://localhost:5000/todos";
   const data = {
     description: todo,
   };
 
+  const getTodos = () => {
+    fetch(url)
+      .then((data) => data.json())
+      .then((data) => setTodos(data));
+  };
+  console.log(todos);
   const postRequest = () => {
-    fetch("http://localhost:5000/todos", {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,10 +50,19 @@ const App = () => {
         >
           POST Todo
         </button>
-        <button className="button">GET TODOS</button>
+        <button
+          className="button"
+          onClick={(e) => {
+            e.preventDefault();
+            getTodos();
+          }}
+        >
+          GET TODOS
+        </button>
       </form>
 
       <pre>{JSON.stringify(response, null, 2)}</pre>
+      <pre>{JSON.stringify(todos, null, 2)}</pre>
     </div>
   );
 };

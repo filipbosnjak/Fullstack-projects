@@ -5,7 +5,7 @@ const pool = new Pool({
   password: "postgres",
   host: "localhost",
   port: 5432,
-  database: "todo_database",
+  database: "perntodo",
 });
 
 module.exports = pool; //By using this we can run queries from our js file
